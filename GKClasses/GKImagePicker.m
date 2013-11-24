@@ -78,8 +78,12 @@
     cropController.resizeableCropArea = self.resizeableCropArea;
     cropController.cropSize = self.cropSize;
     cropController.delegate = self;
-    [picker pushViewController:cropController animated:YES];
     
+    if (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM()) {
+        [picker presentViewController:[[UINavigationController alloc] initWithRootViewController:cropController] animated:YES completion:nil];
+    } else {
+        [picker pushViewController:cropController animated:YES];
+    }
 }
 
 #pragma mark -

@@ -40,7 +40,11 @@
 
 
 - (void)_actionCancel{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 
@@ -61,7 +65,6 @@
                                                                              target:self 
                                                                              action:@selector(_actionUse)];
 }
-
 
 #pragma mark -
 #pragma mark - Crop Rect Normalizing
